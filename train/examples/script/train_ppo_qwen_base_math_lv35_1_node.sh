@@ -1,5 +1,5 @@
 
-HDFS_HOME=TO_BE_DEFINED
+HDFS_HOME=/root/.cache/huggingface
 RUN_NAME=Qwen2.5-Math-7B_ppo_from_base_math_lv35
 
 python3 openrlhf/cli/train_ppo_ray_box.py \
@@ -14,7 +14,7 @@ python3 openrlhf/cli/train_ppo_ray_box.py \
     --vllm_num_engines 2 \
     --vllm_tensor_parallel_size 1 \
     --colocate_actor_ref \
-    --pretrain $HDFS_HOME/model_hub/models--Qwen--Qwen2.5-Math-7B/snapshots/b101308fe89651ea5ce025f25317fea6fc07e96e \
+    --pretrain Qwen/Qwen2.5-Math-7B \
     --save_path $HDFS_HOME/checkpoints/$RUN_NAME \
     --micro_train_batch_size 2 \
     --train_batch_size 128 \
@@ -40,7 +40,7 @@ python3 openrlhf/cli/train_ppo_ray_box.py \
     --gradient_checkpointing \
     --save_steps 4 \
     --load_checkpoint \
-    --use_wandb YOUR_WANDB_KEY \
+    --use_wandb be7f64dd8438dcb43e912a32be795ebc65455162 \
     --wandb_run_name $RUN_NAME \
     --ckpt_path $HDFS_HOME/checkpoints/$RUN_NAME  \
     --max_ckpt_num 20000
